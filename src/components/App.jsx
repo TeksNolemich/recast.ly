@@ -2,21 +2,48 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVid: window.exampleVideoData[0]
+      query: 'default',
+      currentVid: window.exampleVideoData[0],
+      key: window.YOUTUBE_API_KEY,
+      max: 5
     };
-
   }
 
   handleClick(video) {
     this.setState({currentVid: video})
   }
 
+  handleInputChange(string) {
+    var options = {
+      query: this.state.query,
+      currentVid: this.state.currentVid,
+      key: this.state.key,
+      max: this.state.max
+    }
+    var context = this;
+    console.log('typed')
+    this.setState({
+      query: string
+    })
+  }
+
+  componentDidMount() {
+    var options = {
+      query: this.state.query,
+      currentVid: this.state.currentVid,
+      key: this.state.key,
+      max: this.state.max
+    }
+  }
   render() {
     return (
       <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+        {/* <div><h5><em><form><input placeholder={this.state.query} 
+        ref={input => this.search = input} onChange={this.handleInputChange}/>
+        <input type="button" value="search"></input></form></em></h5></div> */}
+        <div><h5><em>Search</em><Search query={this.handleInputChange.bind(this)}/></h5></div>
       </div>
     </nav>
     <div className="row">
