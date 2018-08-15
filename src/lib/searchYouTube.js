@@ -13,12 +13,11 @@ var searchYouTube = (options, callback) => {
     },
     dataType: 'json',
     success: function (data) {
-      // console.log('success', data)
       callback(data.items);
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-      
+
       console.error('fail', data);
     }
   });
